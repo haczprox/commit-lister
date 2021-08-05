@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  quarkus-app:
+    build:
+      context: ../
+      dockerfile: infra/Dockerfile
+    image: commit-lister-app
+    ports:
+      - 8080:8080
+      - 5005:5005
+    depends_on:
+      - postgres
+    networks:
+      - lister-network
+  postgres:
+    image: postgres:12.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=commit_lister
+      - POSTGRES_USER=lister_user
+      - POSTGRES_PASSWORD=password
+      - ALLOW_IP_RANGE='0.0.0.0/0'
+    tmpfs:
+      - /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - lister-network
+
+networks:
+  lister-network:
+    name: lister-network
