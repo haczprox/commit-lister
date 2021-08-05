@@ -46,3 +46,4 @@ The current solution has a few limitations due to time constraints:
 * Timeouts can be configured. Fallback method calling can also be improved.
 * Error codes should be improved.
 * Tests include only a few cases, full coverage is still far.
+* Add checkstyle, spotbugs, PMD to build
