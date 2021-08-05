@@ -31,5 +31,18 @@ When data for a given repository is fetched, it is stored in a Postgres database
 
 The default path uses Github's RESTful api, and the CLI API is used as a fallback.
 
+It contains an healthcheck endpoint provided by SmallRye, which can be helpful when thinking of deployments to K8s environments.
+
 To list the commits for a given repo, the application exposes a paginated endpoint which expects the owner and name of the repository. 
-To call the endpoints, and check more information about the parameters and response, use the open-api documentation accessible at `http://localhost:8080/api-docs/`
+To call the endpoints, and check more information about the parameters and response, use the open-api documentation accessible at `http://localhost:8080/api-docs/`.
+
+To take a look at all libs in use we can use the dev UI, which will show up the list of libraries, as well as a link to their documentation.
+
+## Current limitations
+
+The current solution has a few limitations due to time constraints:
+
+* The number of commits fetched from each repository was set to 500. This was done to both simplify the process, and because unauthenticated access to GitHub's API is limited to 50 calls per hour.
+* Timeouts can be configured. Fallback method calling can also be improved.
+* Error codes should be improved.
+* Tests include only a few cases, full coverage is still far.
