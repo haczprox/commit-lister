@@ -54,7 +54,7 @@ public class CommitListerMockedIT {
             .get("lister/commits/test/test-timeout")
             .then()
             .statusCode(504)
-            .body("message", equalTo(equalTo(ErrorCodeImpl.REQUEST_TIMEOUT.getMessage())),
+            .body("message", equalTo(ErrorCodeImpl.REQUEST_TIMEOUT.getMessage()),
                   "code", equalTo(ErrorCodeImpl.REQUEST_TIMEOUT.getCode()));
     }
 
